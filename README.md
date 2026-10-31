@@ -60,7 +60,6 @@ On Windows behind a corporate or antivirus TLS proxy, start it with `NODE_OPTION
 
 | Name | Feed URL | Tags |
 |------|----------|------|
-| Yahoo Finance | [RSS](https://finance.yahoo.com/news/rssindex) | `stocks` `equities` `markets` |
 | MarketWatch | [RSS](https://feeds.marketwatch.com/marketwatch/topstories/) | `stocks` `markets` `news` |
 | Seeking Alpha | [RSS](https://seekingalpha.com/market_currents.xml) | `stocks` `analysis` `dividends` |
 | Benzinga | [RSS](https://www.benzinga.com/feed) | `stocks` `options` `news` |
