@@ -204,5 +204,16 @@
             "markets"
         ],
         "description": "Crypto and digital asset market news for institutional investors."
+    },
+    {
+        "name": "CNBC Investing",
+        "url": "https://www.cnbc.com/id/15839069/device/rss/rss.html",
+        "category": "stocks",
+        "tags": [
+            "stocks",
+            "investing",
+            "news"
+        ],
+        "description": "Investing and stock market news from CNBC."
     }
 ]
