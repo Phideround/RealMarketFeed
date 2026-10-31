@@ -81,6 +81,7 @@ On Windows behind a corporate or antivirus TLS proxy, start it with `NODE_OPTION
 | Nasdaq Investing | [RSS](https://www.nasdaq.com/feed/rssoutbound?category=Investing) | `news` `analysis` `stock` |
 | Bank of England | [RSS](https://www.bankofengland.co.uk/rss/news) | `boe` `rates` `gbp` |
 | Bank of England | [RSS](https://www.bankofengland.co.uk/rss/news) | `boe` `rates` `gbp` |
+| Bank of Japan | [RSS](https://www.boj.or.jp/en/rss/whatsnew.xml) | `boj` `rates` `jpy` |
 
 ## Contributing
 

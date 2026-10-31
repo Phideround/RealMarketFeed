@@ -237,5 +237,16 @@
             "gbp"
         ],
         "description": "News, rate decisions and speeches from the Bank of England."
+    },
+    {
+        "name": "Bank of Japan",
+        "url": "https://www.boj.or.jp/en/rss/whatsnew.xml",
+        "category": "macro",
+        "tags": [
+            "boj",
+            "rates",
+            "jpy"
+        ],
+        "description": "Policy statements, reports and releases from the Bank of Japan."
     }
 ]
