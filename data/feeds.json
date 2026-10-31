@@ -182,5 +182,16 @@
             "stock"
         ],
         "description": "This feed is responsible for generating the rss feed related to the topic Investing"
+    },
+    {
+        "name": "The Defiant",
+        "url": "https://thedefiant.io/api/feed",
+        "category": "crypto",
+        "tags": [
+            "defi",
+            "eth",
+            "news"
+        ],
+        "description": "News and analysis on decentralized finance, Ethereum and onchain markets."
     }
 ]
