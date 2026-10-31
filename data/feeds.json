@@ -226,5 +226,16 @@
             "bonds"
         ],
         "description": "Global markets coverage from the Financial Times."
+    },
+    {
+        "name": "Bank of England",
+        "url": "https://www.bankofengland.co.uk/rss/news",
+        "category": "macro",
+        "tags": [
+            "boe",
+            "rates",
+            "gbp"
+        ],
+        "description": "News, rate decisions and speeches from the Bank of England."
     }
 ]
