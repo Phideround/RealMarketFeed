@@ -215,5 +215,16 @@
             "news"
         ],
         "description": "Investing and stock market news from CNBC."
+    },
+    {
+        "name": "FT Markets",
+        "url": "https://www.ft.com/markets?format=rss",
+        "category": "stocks",
+        "tags": [
+            "markets",
+            "equities",
+            "bonds"
+        ],
+        "description": "Global markets coverage from the Financial Times."
     }
 ]

@@ -67,6 +67,7 @@ On Windows behind a corporate or antivirus TLS proxy, start it with `NODE_OPTION
 | Motley Fool | [RSS](https://www.fool.com/feeds/index.aspx) | `stocks` `investing` `analysis` |
 | CNBC Investing | [RSS](https://www.cnbc.com/id/15839069/device/rss/rss.html) | `stocks` `investing` `news` |
 | CNBC Investing | [RSS](https://www.cnbc.com/id/15839069/device/rss/rss.html) | `stocks` `investing` `news` |
+| FT Markets | [RSS](https://www.ft.com/markets?format=rss) | `markets` `equities` `bonds` |
 
 ### 🌐 Macro
 
