@@ -48,6 +48,7 @@ On Windows behind a corporate or antivirus TLS proxy, start it with `NODE_OPTION
 | Decrypt | [RSS](https://decrypt.co/feed) | `crypto` `web3` `defi` |
 | The Block | [RSS](https://www.theblock.co/rss.xml) | `crypto` `institutional` |
 | The Defiant | [RSS](https://thedefiant.io/api/feed) | `defi` `eth` `news` |
+| Blockworks | [RSS](https://blockworks.co/feed) | `crypto` `institutional` `markets` |
 
 ### 💱 Forex
 

@@ -193,5 +193,16 @@
             "news"
         ],
         "description": "News and analysis on decentralized finance, Ethereum and onchain markets."
+    },
+    {
+        "name": "Blockworks",
+        "url": "https://blockworks.co/feed",
+        "category": "crypto",
+        "tags": [
+            "crypto",
+            "institutional",
+            "markets"
+        ],
+        "description": "Crypto and digital asset market news for institutional investors."
     }
 ]
