@@ -19,7 +19,7 @@ You need to update **two files**:
 
 #### `data/feeds.json`
 
-Add your feed entry at the end of the array:
+Add your feed entry **in alphabetical order by name** (A to Z, ignoring case). For example, `Blockworks` goes between `Bitcoin Magazine` and `Bloomberg Markets`:
 
 ```json
 {
@@ -41,13 +41,24 @@ Add your feed entry at the end of the array:
 
 #### `README.md`
 
-Add a row to the matching category table:
+Add a row to the matching category table, also **in alphabetical order by name**:
 
 ```markdown
 | Feed Name | [RSS](https://example.com/rss) | `tag1` `tag2` `tag3` |
 ```
 
-### 3. Create a Pull Request
+### 3. Check the order
+
+Alphabetical order is **required to merge**. Every build runs a check that fails when `feeds.json` or a README table is out of order or out of sync. If you cloned the repo, run:
+
+```bash
+npm run feeds:check   # tells you what is out of order
+npm run feeds:sort    # puts feeds.json and README.md in A to Z order
+```
+
+If you edited on GitHub, the deploy preview on your pull request runs the same check.
+
+### 4. Create a Pull Request
 
 1. Commit your change:
    ```bash
@@ -70,6 +81,7 @@ Add a row to the matching category table:
 - **One feed per PR** — makes reviews faster
 - **Only modify `data/feeds.json` and `README.md`** — PRs that change other files will be rejected
 - **Test the feed URL** before submitting — make sure it returns valid RSS/Atom XML
+- **Alphabetical order** — entries go A to Z by name in both files; out-of-order PRs fail the check and won't be merged
 - **No duplicates** — check if the feed already exists in the list
 - **Keep descriptions neutral** — no promotional language
 

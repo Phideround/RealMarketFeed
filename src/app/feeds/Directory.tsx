@@ -16,12 +16,22 @@ export interface DirectoryRow extends Feed {
 
 const isCategory = (v: string | null): v is Category => CATEGORIES.some((c) => c.value === v);
 
+type Sort = "az" | "za" | "desk";
+const SORTS: { value: Sort; label: string }[] = [
+  { value: "az", label: "A to Z" },
+  { value: "za", label: "Z to A" },
+  { value: "desk", label: "By desk" },
+];
+const isSort = (v: string | null): v is Sort => SORTS.some((s) => s.value === v);
+const byName = (a: Feed, b: Feed) => a.name.localeCompare(b.name, "en", { sensitivity: "base" });
+const initial = (name: string) => (/^[a-z]/i.test(name) ? name[0].toUpperCase() : "#");
+
 export function Directory({ rows, allTags }: { rows: DirectoryRow[]; allTags: string[] }) {
   const params = useSearchParams();
   const [search, setSearch] = useState(params.get("q") ?? "");
   const [desk, setDesk] = useState<Category | "all">(isCategory(params.get("desk")) ? (params.get("desk") as Category) : "all");
   const [tag, setTag] = useState(params.get("tag") ?? "all");
-  const [sort, setSort] = useState<"default" | "az">(params.get("sort") === "az" ? "az" : "default");
+  const [sort, setSort] = useState<Sort>(isSort(params.get("sort")) ? (params.get("sort") as Sort) : "az");
 
   // Keep the filters in the address bar so a filtered view can be shared.
   useEffect(() => {
@@ -29,7 +39,7 @@ export function Directory({ rows, allTags }: { rows: DirectoryRow[]; allTags: st
     if (search.trim()) next.set("q", search.trim());
     if (desk !== "all") next.set("desk", desk);
     if (tag !== "all") next.set("tag", tag);
-    if (sort === "az") next.set("sort", "az");
+    if (sort !== "az") next.set("sort", sort);
     const qs = next.toString();
     window.history.replaceState(null, "", qs ? `?${qs}` : window.location.pathname);
   }, [search, desk, tag, sort]);
@@ -45,8 +55,25 @@ export function Directory({ rows, allTags }: { rows: DirectoryRow[]; allTags: st
           f.description.toLowerCase().includes(q) ||
           f.tags.some((t) => t.includes(q)))
     );
-    return sort === "az" ? [...result].sort((a, b) => a.name.localeCompare(b.name)) : result;
+    if (sort === "za") return [...result].sort((a, b) => byName(b, a));
+    if (sort === "desk") {
+      const rank = (f: Feed) => CATEGORIES.findIndex((c) => c.value === f.category);
+      return [...result].sort((a, b) => rank(a) - rank(b) || byName(a, b));
+    }
+    return [...result].sort(byName);
   }, [rows, search, desk, tag, sort]);
+
+  // Group the results under a letter (alphabetical orders) or a desk name.
+  const groups = useMemo(() => {
+    const out: { key: string; label: string; items: DirectoryRow[] }[] = [];
+    for (const f of filtered) {
+      const key = sort === "desk" ? f.category : initial(f.name);
+      const last = out[out.length - 1];
+      if (last?.key === key) last.items.push(f);
+      else out.push({ key, label: sort === "desk" ? categoryInfo(f.category).label : key, items: [f] });
+    }
+    return out;
+  }, [filtered, sort]);
 
   const reset = () => {
     setSearch("");
@@ -101,24 +128,45 @@ export function Directory({ rows, allTags }: { rows: DirectoryRow[]; allTags: st
               </div>
             </fieldset>
 
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label htmlFor="tag" className="mb-2 block text-[length:var(--step-small)] font-semibold">Tag</label>
-                <select id="tag" value={tag} onChange={(e) => setTag(e.target.value)} className={`${control} w-full`}>
-                  <option value="all">Any tag</option>
-                  {allTags.map((t) => (
-                    <option key={t} value={t}>{t}</option>
-                  ))}
-                </select>
+            <fieldset>
+              <legend className="mb-2 text-[length:var(--step-small)] font-semibold">Sort</legend>
+              <div className="flex flex-wrap gap-2">
+                {SORTS.map((s) => (
+                  <button
+                    key={s.value}
+                    onClick={() => setSort(s.value)}
+                    aria-pressed={sort === s.value}
+                    className={`press ${control} aria-pressed:bg-ink aria-pressed:text-bg`}
+                  >
+                    {s.label}
+                  </button>
+                ))}
               </div>
-              <div>
-                <label htmlFor="sort" className="mb-2 block text-[length:var(--step-small)] font-semibold">Order</label>
-                <select id="sort" value={sort} onChange={(e) => setSort(e.target.value as "default" | "az")} className={`${control} w-full`}>
-                  <option value="default">By desk</option>
-                  <option value="az">A to Z</option>
-                </select>
-              </div>
+            </fieldset>
+
+            <div>
+              <label htmlFor="tag" className="mb-2 block text-[length:var(--step-small)] font-semibold">Tag</label>
+              <select id="tag" value={tag} onChange={(e) => setTag(e.target.value)} className={`${control} w-full`}>
+                <option value="all">Any tag</option>
+                {allTags.map((t) => (
+                  <option key={t} value={t}>{t}</option>
+                ))}
+              </select>
             </div>
+
+            {sort !== "desk" && groups.length > 1 && (
+              <nav aria-label="Jump to letter" className="flex flex-wrap gap-1">
+                {groups.map((g) => (
+                  <a
+                    key={g.key}
+                    href={`#letter-${g.key}`}
+                    className="press inline-flex size-11 items-center justify-center bg-surface text-[length:var(--step-small)] font-extrabold hover:bg-ink hover:text-bg"
+                  >
+                    {g.label}
+                  </a>
+                ))}
+              </nav>
+            )}
 
             <div className="flex flex-wrap items-center gap-x-5 gap-y-3 pt-2">
               <p aria-live="polite" className="text-[length:var(--step-small)]">
@@ -149,43 +197,52 @@ export function Directory({ rows, allTags }: { rows: DirectoryRow[]; allTags: st
               </button>
             </div>
           ) : (
-            <ul className="flex flex-col gap-2">
-              {filtered.map((f) => (
-                <li key={f.slug} className="bg-surface p-5 md:p-6">
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-                    <h2 className="text-[length:var(--step-lead)] font-extrabold tracking-[-0.03em]">
-                      <Link href={`/feeds/${f.slug}`} className="hover:underline">{f.name}</Link>
-                    </h2>
-                    <Link href={`/category/${f.category}`} className="text-[length:var(--step-small)] font-semibold hover:underline">
-                      <span aria-hidden="true" className="mr-2 inline-block size-2.5" style={{ backgroundColor: categoryInfo(f.category).field }} />
-                      {categoryInfo(f.category).label}
-                    </Link>
-                  </div>
-                  <p className="mt-1 max-w-[60ch]">{f.description}</p>
-                  <p className="mt-1 text-[length:var(--step-small)] text-muted">Tagged {f.tags.join(", ")}</p>
-
-                  <p className="mt-4 text-[length:var(--step-small)]">
-                    {f.latest ? (
-                      <>
-                        <span className="font-semibold">Latest{f.latest.date ? `, ${formatStamp(f.latest.date)} UTC` : ""}: </span>
-                        <a href={f.latest.link} target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">
-                          {f.latest.title}
-                        </a>
-                      </>
-                    ) : (
-                      <span className="text-muted">We couldn&apos;t read this feed at the last update. It may only open in a reader.</span>
-                    )}
-                  </p>
-
-                  <div className="mt-5 flex flex-wrap gap-2 text-[length:var(--step-small)]">
-                    <CopyButton url={f.url} className="min-h-11 bg-accent px-4 font-semibold text-accent-ink" />
-                    <Link href={`/feeds/${f.slug}`} className="press inline-flex min-h-11 items-center bg-ink px-4 font-semibold text-bg">
-                      Headlines and subscribe
-                    </Link>
-                  </div>
-                </li>
+            <div className="flex flex-col gap-10">
+              {groups.map((g) => (
+                <section key={g.key} id={`letter-${g.key}`} aria-labelledby={`group-${g.key}`} className="scroll-mt-6">
+                  <h2 id={`group-${g.key}`} className="mb-3 text-[clamp(2rem,1.4rem+2vw,3rem)] font-extrabold leading-none tracking-[-0.045em]">
+                    {g.label}
+                  </h2>
+                  <ul className="flex flex-col gap-2">
+                    {g.items.map((f) => (
+                    <li key={f.slug} className="bg-surface p-5 md:p-6">
+                      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                        <h3 className="text-[length:var(--step-lead)] font-extrabold tracking-[-0.03em]">
+                          <Link href={`/feeds/${f.slug}`} className="hover:underline">{f.name}</Link>
+                        </h3>
+                        <Link href={`/category/${f.category}`} className="text-[length:var(--step-small)] font-semibold hover:underline">
+                          <span aria-hidden="true" className="mr-2 inline-block size-2.5" style={{ backgroundColor: categoryInfo(f.category).field }} />
+                          {categoryInfo(f.category).label}
+                        </Link>
+                      </div>
+                      <p className="mt-1 max-w-[60ch]">{f.description}</p>
+                      <p className="mt-1 text-[length:var(--step-small)] text-muted">Tagged {f.tags.join(", ")}</p>
+    
+                      <p className="mt-4 text-[length:var(--step-small)]">
+                        {f.latest ? (
+                          <>
+                            <span className="font-semibold">Latest{f.latest.date ? `, ${formatStamp(f.latest.date)} UTC` : ""}: </span>
+                            <a href={f.latest.link} target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">
+                              {f.latest.title}
+                            </a>
+                          </>
+                        ) : (
+                          <span className="text-muted">We couldn&apos;t read this feed at the last update. It may only open in a reader.</span>
+                        )}
+                      </p>
+    
+                      <div className="mt-5 flex flex-wrap gap-2 text-[length:var(--step-small)]">
+                        <CopyButton url={f.url} className="min-h-11 bg-accent px-4 font-semibold text-accent-ink" />
+                        <Link href={`/feeds/${f.slug}`} className="press inline-flex min-h-11 items-center bg-ink px-4 font-semibold text-bg">
+                          Headlines and subscribe
+                        </Link>
+                      </div>
+                    </li>
+                    ))}
+                  </ul>
+                </section>
               ))}
-            </ul>
+            </div>
           )}
         </div>
       </div>

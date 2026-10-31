@@ -1,220 +1,14 @@
 [
     {
-        "name": "CoinDesk",
-        "url": "https://www.coindesk.com/arc/outboundfeeds/rss/",
-        "category": "crypto",
-        "tags": [
-            "btc",
-            "crypto",
-            "news"
-        ],
-        "description": "Crypto news and market updates from one of the leading crypto media outlets."
-    },
-    {
-        "name": "CoinTelegraph",
-        "url": "https://cointelegraph.com/rss",
-        "category": "crypto",
-        "tags": [
-            "btc",
-            "eth",
-            "crypto"
-        ],
-        "description": "Latest cryptocurrency news, analysis, and market updates."
-    },
-    {
-        "name": "Bitcoin Magazine",
-        "url": "https://bitcoinmagazine.com/.rss/full/",
-        "category": "crypto",
-        "tags": [
-            "btc",
-            "bitcoin"
-        ],
-        "description": "The oldest and most established source of Bitcoin news and information."
-    },
-    {
-        "name": "Decrypt",
-        "url": "https://decrypt.co/feed",
-        "category": "crypto",
-        "tags": [
-            "crypto",
-            "web3",
-            "defi"
-        ],
-        "description": "Demystifying the decentralized web with news and guides."
-    },
-    {
-        "name": "The Block",
-        "url": "https://www.theblock.co/rss.xml",
-        "category": "crypto",
-        "tags": [
-            "crypto",
-            "institutional"
-        ],
-        "description": "Institutional-grade crypto research and analysis."
-    },
-    {
-        "name": "Investing.com Forex",
-        "url": "https://www.investing.com/rss/forex.rss",
-        "category": "forex",
-        "tags": [
-            "forex",
-            "analysis"
-        ],
-        "description": "Forex news and market data from Investing.com."
-    },
-    {
-        "name": "MarketWatch",
-        "url": "https://feeds.marketwatch.com/marketwatch/topstories/",
-        "category": "stocks",
-        "tags": [
-            "stocks",
-            "markets",
-            "news"
-        ],
-        "description": "Top stories from MarketWatch covering stocks, bonds, and market trends."
-    },
-    {
-        "name": "Seeking Alpha",
-        "url": "https://seekingalpha.com/market_currents.xml",
-        "category": "stocks",
-        "tags": [
-            "stocks",
-            "analysis",
-            "dividends"
-        ],
-        "description": "Market currents and stock analysis from Seeking Alpha contributors."
-    },
-    {
-        "name": "Benzinga",
-        "url": "https://www.benzinga.com/feed",
-        "category": "stocks",
-        "tags": [
-            "stocks",
-            "options",
-            "news"
-        ],
-        "description": "Actionable trading ideas and financial news for active traders."
-    },
-    {
-        "name": "Motley Fool",
-        "url": "https://www.fool.com/feeds/index.aspx",
-        "category": "stocks",
-        "tags": [
-            "stocks",
-            "investing",
-            "analysis"
-        ],
-        "description": "Stock market insights and investment advice from The Motley Fool."
-    },
-    {
-        "name": "Bloomberg Markets",
-        "url": "https://feeds.bloomberg.com/markets/news.rss",
+        "name": "Bank of Canada",
+        "url": "https://www.bankofcanada.ca/content_type/press-releases/feed/",
         "category": "macro",
         "tags": [
-            "macro",
-            "markets",
-            "finance"
+            "boc",
+            "rates",
+            "cad"
         ],
-        "description": "Global markets and macroeconomic news from Bloomberg."
-    },
-    {
-        "name": "Federal Reserve",
-        "url": "https://www.federalreserve.gov/feeds/press_all.xml",
-        "category": "macro",
-        "tags": [
-            "macro",
-            "fed",
-            "rates"
-        ],
-        "description": "Official press releases and policy updates from the Federal Reserve."
-    },
-    {
-        "name": "ECB Press Releases",
-        "url": "https://www.ecb.europa.eu/rss/press.html",
-        "category": "macro",
-        "tags": [
-            "macro",
-            "ecb",
-            "eur"
-        ],
-        "description": "Press releases and policy decisions from the European Central Bank."
-    },
-    {
-        "name": "Zero Hedge",
-        "url": "https://feeds.feedburner.com/zerohedge/feed",
-        "category": "macro",
-        "tags": [
-            "macro",
-            "gold",
-            "contrarian"
-        ],
-        "description": "Alternative financial analysis and macroeconomic commentary."
-    },
-    {
-        "name": "RealMarketAPI",
-        "url": "https://realmarketapi.com/feed.xml",
-        "category": "macro",
-        "tags": [
-            "forex",
-            "commodities",
-            "stock"
-        ],
-        "description": "Real-time and historical market data APIs for developers and traders."
-    },
-    {
-        "name": "Nasdaq Investing",
-        "url": "https://www.nasdaq.com/feed/rssoutbound?category=Investing",
-        "category": "macro",
-        "tags": [
-            "news",
-            "analysis",
-            "stock"
-        ],
-        "description": "This feed is responsible for generating the rss feed related to the topic Investing"
-    },
-    {
-        "name": "The Defiant",
-        "url": "https://thedefiant.io/api/feed",
-        "category": "crypto",
-        "tags": [
-            "defi",
-            "eth",
-            "news"
-        ],
-        "description": "News and analysis on decentralized finance, Ethereum and onchain markets."
-    },
-    {
-        "name": "Blockworks",
-        "url": "https://blockworks.co/feed",
-        "category": "crypto",
-        "tags": [
-            "crypto",
-            "institutional",
-            "markets"
-        ],
-        "description": "Crypto and digital asset market news for institutional investors."
-    },
-    {
-        "name": "CNBC Investing",
-        "url": "https://www.cnbc.com/id/15839069/device/rss/rss.html",
-        "category": "stocks",
-        "tags": [
-            "stocks",
-            "investing",
-            "news"
-        ],
-        "description": "Investing and stock market news from CNBC."
-    },
-    {
-        "name": "FT Markets",
-        "url": "https://www.ft.com/markets?format=rss",
-        "category": "stocks",
-        "tags": [
-            "markets",
-            "equities",
-            "bonds"
-        ],
-        "description": "Global markets coverage from the Financial Times."
+        "description": "Press releases and rate announcements from the Bank of Canada."
     },
     {
         "name": "Bank of England",
@@ -239,15 +33,15 @@
         "description": "Policy statements, reports and releases from the Bank of Japan."
     },
     {
-        "name": "Bank of Canada",
-        "url": "https://www.bankofcanada.ca/content_type/press-releases/feed/",
-        "category": "macro",
+        "name": "Benzinga",
+        "url": "https://www.benzinga.com/feed",
+        "category": "stocks",
         "tags": [
-            "boc",
-            "rates",
-            "cad"
+            "stocks",
+            "options",
+            "news"
         ],
-        "description": "Press releases and rate announcements from the Bank of Canada."
+        "description": "Actionable trading ideas and financial news for active traders."
     },
     {
         "name": "BIS Central Bankers' Speeches",
@@ -259,5 +53,211 @@
             "policy"
         ],
         "description": "Speeches by central bank officials worldwide, collected by the Bank for International Settlements."
+    },
+    {
+        "name": "Bitcoin Magazine",
+        "url": "https://bitcoinmagazine.com/.rss/full/",
+        "category": "crypto",
+        "tags": [
+            "btc",
+            "bitcoin"
+        ],
+        "description": "The oldest and most established source of Bitcoin news and information."
+    },
+    {
+        "name": "Blockworks",
+        "url": "https://blockworks.co/feed",
+        "category": "crypto",
+        "tags": [
+            "crypto",
+            "institutional",
+            "markets"
+        ],
+        "description": "Crypto and digital asset market news for institutional investors."
+    },
+    {
+        "name": "Bloomberg Markets",
+        "url": "https://feeds.bloomberg.com/markets/news.rss",
+        "category": "macro",
+        "tags": [
+            "macro",
+            "markets",
+            "finance"
+        ],
+        "description": "Global markets and macroeconomic news from Bloomberg."
+    },
+    {
+        "name": "CNBC Investing",
+        "url": "https://www.cnbc.com/id/15839069/device/rss/rss.html",
+        "category": "stocks",
+        "tags": [
+            "stocks",
+            "investing",
+            "news"
+        ],
+        "description": "Investing and stock market news from CNBC."
+    },
+    {
+        "name": "CoinDesk",
+        "url": "https://www.coindesk.com/arc/outboundfeeds/rss/",
+        "category": "crypto",
+        "tags": [
+            "btc",
+            "crypto",
+            "news"
+        ],
+        "description": "Crypto news and market updates from one of the leading crypto media outlets."
+    },
+    {
+        "name": "CoinTelegraph",
+        "url": "https://cointelegraph.com/rss",
+        "category": "crypto",
+        "tags": [
+            "btc",
+            "eth",
+            "crypto"
+        ],
+        "description": "Latest cryptocurrency news, analysis, and market updates."
+    },
+    {
+        "name": "Decrypt",
+        "url": "https://decrypt.co/feed",
+        "category": "crypto",
+        "tags": [
+            "crypto",
+            "web3",
+            "defi"
+        ],
+        "description": "Demystifying the decentralized web with news and guides."
+    },
+    {
+        "name": "ECB Press Releases",
+        "url": "https://www.ecb.europa.eu/rss/press.html",
+        "category": "macro",
+        "tags": [
+            "macro",
+            "ecb",
+            "eur"
+        ],
+        "description": "Press releases and policy decisions from the European Central Bank."
+    },
+    {
+        "name": "Federal Reserve",
+        "url": "https://www.federalreserve.gov/feeds/press_all.xml",
+        "category": "macro",
+        "tags": [
+            "macro",
+            "fed",
+            "rates"
+        ],
+        "description": "Official press releases and policy updates from the Federal Reserve."
+    },
+    {
+        "name": "FT Markets",
+        "url": "https://www.ft.com/markets?format=rss",
+        "category": "stocks",
+        "tags": [
+            "markets",
+            "equities",
+            "bonds"
+        ],
+        "description": "Global markets coverage from the Financial Times."
+    },
+    {
+        "name": "Investing.com Forex",
+        "url": "https://www.investing.com/rss/forex.rss",
+        "category": "forex",
+        "tags": [
+            "forex",
+            "analysis"
+        ],
+        "description": "Forex news and market data from Investing.com."
+    },
+    {
+        "name": "MarketWatch",
+        "url": "https://feeds.marketwatch.com/marketwatch/topstories/",
+        "category": "stocks",
+        "tags": [
+            "stocks",
+            "markets",
+            "news"
+        ],
+        "description": "Top stories from MarketWatch covering stocks, bonds, and market trends."
+    },
+    {
+        "name": "Motley Fool",
+        "url": "https://www.fool.com/feeds/index.aspx",
+        "category": "stocks",
+        "tags": [
+            "stocks",
+            "investing",
+            "analysis"
+        ],
+        "description": "Stock market insights and investment advice from The Motley Fool."
+    },
+    {
+        "name": "Nasdaq Investing",
+        "url": "https://www.nasdaq.com/feed/rssoutbound?category=Investing",
+        "category": "macro",
+        "tags": [
+            "news",
+            "analysis",
+            "stock"
+        ],
+        "description": "This feed is responsible for generating the rss feed related to the topic Investing"
+    },
+    {
+        "name": "RealMarketAPI",
+        "url": "https://realmarketapi.com/feed.xml",
+        "category": "macro",
+        "tags": [
+            "forex",
+            "commodities",
+            "stock"
+        ],
+        "description": "Real-time and historical market data APIs for developers and traders."
+    },
+    {
+        "name": "Seeking Alpha",
+        "url": "https://seekingalpha.com/market_currents.xml",
+        "category": "stocks",
+        "tags": [
+            "stocks",
+            "analysis",
+            "dividends"
+        ],
+        "description": "Market currents and stock analysis from Seeking Alpha contributors."
+    },
+    {
+        "name": "The Block",
+        "url": "https://www.theblock.co/rss.xml",
+        "category": "crypto",
+        "tags": [
+            "crypto",
+            "institutional"
+        ],
+        "description": "Institutional-grade crypto research and analysis."
+    },
+    {
+        "name": "The Defiant",
+        "url": "https://thedefiant.io/api/feed",
+        "category": "crypto",
+        "tags": [
+            "defi",
+            "eth",
+            "news"
+        ],
+        "description": "News and analysis on decentralized finance, Ethereum and onchain markets."
+    },
+    {
+        "name": "Zero Hedge",
+        "url": "https://feeds.feedburner.com/zerohedge/feed",
+        "category": "macro",
+        "tags": [
+            "macro",
+            "gold",
+            "contrarian"
+        ],
+        "description": "Alternative financial analysis and macroeconomic commentary."
     }
 ]

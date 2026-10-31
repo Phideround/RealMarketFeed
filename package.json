@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/feeds.mjs --check",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "feeds:check": "node scripts/feeds.mjs --check",
+    "feeds:sort": "node scripts/feeds.mjs --fix"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

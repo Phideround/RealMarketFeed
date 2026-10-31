@@ -1,5 +1,22 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Sort the directory A to Z, Z to A, or by desk. Alphabetical views are grouped under letter headings with a jump-to-letter index, and the chosen order is kept in the URL.
+- 8 new feeds: The Defiant, Blockworks, CNBC Investing, FT Markets, Bank of England, Bank of Japan, Bank of Canada, BIS Central Bankers' Speeches.
+- `npm run feeds:check` and `npm run feeds:sort`. The check runs before every build and fails when `data/feeds.json` or a README table is out of A to Z order, out of sync, or breaks the entry rules.
+- README: review policy, disclaimer, MIT license details and support contacts.
+
+### Changed
+
+- `data/feeds.json` and the README tables are now in alphabetical order by name, and new entries must be added in that order to be merged (README, CONTRIBUTING.md and the Submit page say so).
+
+### Removed
+
+- Yahoo Finance: its feed URL returns 404.
+
 ## 0.2.0 (2026-10-31)
 
 A redesign around what the directory is for: reading feeds, and adding them.

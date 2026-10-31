@@ -15,6 +15,7 @@ const RULES = [
   ["One desk", "crypto, forex, stocks or macro: the one that fits most of its stories."],
   ["Three tags at most", "Lowercase, specific words people would search for."],
   ["One plain sentence", "What the feed covers, in your words, without marketing."],
+  ["A to Z order", "Entries sit in alphabetical order by name, in feeds.json and in the README. Out-of-order changes fail the build check."],
   ["Free to read", "Headlines open without a login, even if some stories are paywalled."],
 ];
 
@@ -47,8 +48,8 @@ export default function SubmitPage() {
             <div>
               <h3 className="text-[clamp(1.75rem,1.2rem+1.6vw,2.5rem)] font-extrabold leading-none tracking-[-0.04em]">Edit one file</h3>
               <p className="mt-4 max-w-[42ch]">
-                Open <code>data/feeds.json</code> in GitHub&apos;s editor and add your entry at the end. GitHub forks the repo and
-                opens the pull request for you. Nothing to install.
+                Open <code>data/feeds.json</code> in GitHub&apos;s editor and add your entry in alphabetical order by name. GitHub
+                forks the repo and opens the pull request for you. Nothing to install.
               </p>
             </div>
             <a href={EDIT_FEEDS_URL} className="press inline-flex min-h-12 items-center self-start bg-accent px-6 font-semibold text-accent-ink">

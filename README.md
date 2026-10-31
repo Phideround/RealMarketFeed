@@ -38,13 +38,13 @@ No account, no tracking cookies, no paywall. The site is static: no database and
 
 | Name | Feed URL | Tags |
 |------|----------|------|
+| Bitcoin Magazine | [RSS](https://bitcoinmagazine.com/.rss/full/) | `btc` `bitcoin` |
+| Blockworks | [RSS](https://blockworks.co/feed) | `crypto` `institutional` `markets` |
 | CoinDesk | [RSS](https://www.coindesk.com/arc/outboundfeeds/rss/) | `btc` `crypto` `news` |
 | CoinTelegraph | [RSS](https://cointelegraph.com/rss) | `btc` `eth` `crypto` |
-| Bitcoin Magazine | [RSS](https://bitcoinmagazine.com/.rss/full/) | `btc` `bitcoin` |
 | Decrypt | [RSS](https://decrypt.co/feed) | `crypto` `web3` `defi` |
 | The Block | [RSS](https://www.theblock.co/rss.xml) | `crypto` `institutional` |
 | The Defiant | [RSS](https://thedefiant.io/api/feed) | `defi` `eth` `news` |
-| Blockworks | [RSS](https://blockworks.co/feed) | `crypto` `institutional` `markets` |
 
 ### 💱 Forex
 
@@ -56,36 +56,38 @@ No account, no tracking cookies, no paywall. The site is static: no database and
 
 | Name | Feed URL | Tags |
 |------|----------|------|
-| MarketWatch | [RSS](https://feeds.marketwatch.com/marketwatch/topstories/) | `stocks` `markets` `news` |
-| Seeking Alpha | [RSS](https://seekingalpha.com/market_currents.xml) | `stocks` `analysis` `dividends` |
 | Benzinga | [RSS](https://www.benzinga.com/feed) | `stocks` `options` `news` |
-| Motley Fool | [RSS](https://www.fool.com/feeds/index.aspx) | `stocks` `investing` `analysis` |
 | CNBC Investing | [RSS](https://www.cnbc.com/id/15839069/device/rss/rss.html) | `stocks` `investing` `news` |
 | FT Markets | [RSS](https://www.ft.com/markets?format=rss) | `markets` `equities` `bonds` |
+| MarketWatch | [RSS](https://feeds.marketwatch.com/marketwatch/topstories/) | `stocks` `markets` `news` |
+| Motley Fool | [RSS](https://www.fool.com/feeds/index.aspx) | `stocks` `investing` `analysis` |
+| Seeking Alpha | [RSS](https://seekingalpha.com/market_currents.xml) | `stocks` `analysis` `dividends` |
 
 ### 🌐 Macro
 
 | Name | Feed URL | Tags |
 |------|----------|------|
-| Bloomberg Markets | [RSS](https://feeds.bloomberg.com/markets/news.rss) | `macro` `markets` `finance` |
-| Federal Reserve | [RSS](https://www.federalreserve.gov/feeds/press_all.xml) | `macro` `fed` `rates` |
-| ECB Press Releases | [RSS](https://www.ecb.europa.eu/rss/press.html) | `macro` `ecb` `eur` |
-| Zero Hedge | [RSS](https://feeds.feedburner.com/zerohedge/feed) | `macro` `gold` `contrarian` |
-| RealMarketAPI | [RSS](https://realmarketapi.com/feed.xml) | `forex` `commodities` `stock` |
-| Nasdaq Investing | [RSS](https://www.nasdaq.com/feed/rssoutbound?category=Investing) | `news` `analysis` `stock` |
+| Bank of Canada | [RSS](https://www.bankofcanada.ca/content_type/press-releases/feed/) | `boc` `rates` `cad` |
 | Bank of England | [RSS](https://www.bankofengland.co.uk/rss/news) | `boe` `rates` `gbp` |
 | Bank of Japan | [RSS](https://www.boj.or.jp/en/rss/whatsnew.xml) | `boj` `rates` `jpy` |
-| Bank of Canada | [RSS](https://www.bankofcanada.ca/content_type/press-releases/feed/) | `boc` `rates` `cad` |
 | BIS Central Bankers' Speeches | [RSS](https://www.bis.org/doclist/cbspeeches.rss) | `central-banks` `rates` `policy` |
+| Bloomberg Markets | [RSS](https://feeds.bloomberg.com/markets/news.rss) | `macro` `markets` `finance` |
+| ECB Press Releases | [RSS](https://www.ecb.europa.eu/rss/press.html) | `macro` `ecb` `eur` |
+| Federal Reserve | [RSS](https://www.federalreserve.gov/feeds/press_all.xml) | `macro` `fed` `rates` |
+| Nasdaq Investing | [RSS](https://www.nasdaq.com/feed/rssoutbound?category=Investing) | `news` `analysis` `stock` |
+| RealMarketAPI | [RSS](https://realmarketapi.com/feed.xml) | `forex` `commodities` `stock` |
+| Zero Hedge | [RSS](https://feeds.feedburner.com/zerohedge/feed) | `macro` `gold` `contrarian` |
 
 ## Contributing
 
 Anyone can suggest a feed. There are two ways in, and neither needs a local setup:
 
 1. **Paste a link.** [Open an issue](https://github.com/Phideround/RealMarketFeed/issues/new?title=Add%20feed%3A%20) with the feed URL, its name, its desk, and one line on why traders would want it. A maintainer checks it and adds it for you.
-2. **Edit one file.** Add your entry to [`data/feeds.json`](data/feeds.json) in GitHub's web editor and add the same row to the table above. GitHub forks the repo and opens the pull request for you.
+2. **Edit one file.** Add your entry to [`data/feeds.json`](data/feeds.json) in GitHub's web editor, **in alphabetical order by name**, and add the same row to the matching table above, also in alphabetical order. GitHub forks the repo and opens the pull request for you.
 
 One feed per pull request, and only `data/feeds.json` and `README.md` should change. See [CONTRIBUTING.md](CONTRIBUTING.md) for the exact format.
+
+**Alphabetical order is required to merge.** Feeds are listed A to Z by name (ignoring case) in `feeds.json` and in each README table. Every build runs `npm run feeds:check`, which fails when an entry is out of order, so a pull request in the wrong order can't be merged. If you work locally, `npm run feeds:sort` puts both files in order for you.
 
 Fixes to the site itself (bugs, accessibility, design) are welcome too: open an issue first for anything larger than a small fix.
 
@@ -98,6 +100,7 @@ Fixes to the site itself (bugs, accessibility, design) are welcome too: open an 
 - **It works today.** The URL returns valid RSS or Atom with recent stories, and the headlines are free to read (individual stories may be paywalled).
 - **It is on topic.** It covers crypto, forex, stocks or macro for people who follow markets.
 - **The entry is accurate.** The name, desk, tags and description say plainly what the feed is, with no marketing language.
+- **It is in alphabetical order.** The entry sits in A to Z order by name in `feeds.json` and in its README table, and `npm run feeds:check` passes.
 
 **We reject a submission when:**
 

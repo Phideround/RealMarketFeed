@@ -202,7 +202,7 @@ export default async function HomePage() {
             <div>
               <h3 className="text-[clamp(1.75rem,1.2rem+1.6vw,2.5rem)] font-extrabold leading-none tracking-[-0.04em]">Edit one file</h3>
               <p className="mt-4 max-w-[46ch]">
-                Add five lines to <code>data/feeds.json</code> in GitHub&apos;s editor. It forks the repo and opens the pull
+                Add five lines to <code>data/feeds.json</code> in GitHub&apos;s editor, in A to Z order. It forks the repo and opens the pull
                 request for you; the feed goes live with the next build.
               </p>
               <pre className="mt-6 overflow-x-auto bg-black/40 p-4 text-sm leading-relaxed">
