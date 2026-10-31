@@ -182,5 +182,16 @@
             "stock"
         ],
         "description": "This feed is responsible for generating the rss feed related to the topic Investing"
+    },
+    {
+        "name": "CNBC Investing",
+        "url": "https://www.cnbc.com/id/15839069/device/rss/rss.html",
+        "category": "stocks",
+        "tags": [
+            "stocks",
+            "investing",
+            "news"
+        ],
+        "description": "Investing and stock market news from CNBC."
     }
 ]

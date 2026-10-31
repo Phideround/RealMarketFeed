@@ -63,6 +63,7 @@ On Windows behind a corporate or antivirus TLS proxy, start it with `NODE_OPTION
 | Seeking Alpha | [RSS](https://seekingalpha.com/market_currents.xml) | `stocks` `analysis` `dividends` |
 | Benzinga | [RSS](https://www.benzinga.com/feed) | `stocks` `options` `news` |
 | Motley Fool | [RSS](https://www.fool.com/feeds/index.aspx) | `stocks` `investing` `analysis` |
+| CNBC Investing | [RSS](https://www.cnbc.com/id/15839069/device/rss/rss.html) | `stocks` `investing` `news` |
 
 ### 🌐 Macro
 
