@@ -74,6 +74,7 @@ On Windows behind a corporate or antivirus TLS proxy, start it with `NODE_OPTION
 | Zero Hedge | [RSS](https://feeds.feedburner.com/zerohedge/feed) | `macro` `gold` `contrarian` |
 | RealMarketAPI | [RSS](https://realmarketapi.com/feed.xml) | `forex` `commodities` `stock` |
 | Nasdaq Investing | [RSS](https://www.nasdaq.com/feed/rssoutbound?category=Investing) | `news` `analysis` `stock` |
+| BIS Central Bankers' Speeches | [RSS](https://www.bis.org/doclist/cbspeeches.rss) | `central-banks` `rates` `policy` |
 
 ## Contributing
 

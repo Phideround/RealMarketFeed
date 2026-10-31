@@ -182,5 +182,16 @@
             "stock"
         ],
         "description": "This feed is responsible for generating the rss feed related to the topic Investing"
+    },
+    {
+        "name": "BIS Central Bankers' Speeches",
+        "url": "https://www.bis.org/doclist/cbspeeches.rss",
+        "category": "macro",
+        "tags": [
+            "central-banks",
+            "rates",
+            "policy"
+        ],
+        "description": "Speeches by central bank officials worldwide, collected by the Bank for International Settlements."
     }
 ]
