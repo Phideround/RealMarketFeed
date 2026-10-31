@@ -248,5 +248,16 @@
             "jpy"
         ],
         "description": "Policy statements, reports and releases from the Bank of Japan."
+    },
+    {
+        "name": "Bank of Canada",
+        "url": "https://www.bankofcanada.ca/content_type/press-releases/feed/",
+        "category": "macro",
+        "tags": [
+            "boc",
+            "rates",
+            "cad"
+        ],
+        "description": "Press releases and rate announcements from the Bank of Canada."
     }
 ]

@@ -82,6 +82,7 @@ On Windows behind a corporate or antivirus TLS proxy, start it with `NODE_OPTION
 | Bank of England | [RSS](https://www.bankofengland.co.uk/rss/news) | `boe` `rates` `gbp` |
 | Bank of England | [RSS](https://www.bankofengland.co.uk/rss/news) | `boe` `rates` `gbp` |
 | Bank of Japan | [RSS](https://www.boj.or.jp/en/rss/whatsnew.xml) | `boj` `rates` `jpy` |
+| Bank of Canada | [RSS](https://www.bankofcanada.ca/content_type/press-releases/feed/) | `boc` `rates` `cad` |
 
 ## Contributing
 
