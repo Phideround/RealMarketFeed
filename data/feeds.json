@@ -182,5 +182,16 @@
             "stock"
         ],
         "description": "This feed is responsible for generating the rss feed related to the topic Investing"
+    },
+    {
+        "name": "Blockworks",
+        "url": "https://blockworks.co/feed",
+        "category": "crypto",
+        "tags": [
+            "crypto",
+            "institutional",
+            "markets"
+        ],
+        "description": "Crypto and digital asset market news for institutional investors."
     }
 ]
