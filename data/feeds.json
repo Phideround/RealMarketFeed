@@ -182,5 +182,16 @@
             "stock"
         ],
         "description": "This feed is responsible for generating the rss feed related to the topic Investing"
+    },
+    {
+        "name": "Bank of England",
+        "url": "https://www.bankofengland.co.uk/rss/news",
+        "category": "macro",
+        "tags": [
+            "boe",
+            "rates",
+            "gbp"
+        ],
+        "description": "News, rate decisions and speeches from the Bank of England."
     }
 ]
