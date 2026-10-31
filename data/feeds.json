@@ -63,17 +63,6 @@
         "description": "Forex news and market data from Investing.com."
     },
     {
-        "name": "Yahoo Finance",
-        "url": "https://finance.yahoo.com/news/rssindex",
-        "category": "stocks",
-        "tags": [
-            "stocks",
-            "equities",
-            "markets"
-        ],
-        "description": "Top financial and stock market news from Yahoo Finance."
-    },
-    {
         "name": "MarketWatch",
         "url": "https://feeds.marketwatch.com/marketwatch/topstories/",
         "category": "stocks",
