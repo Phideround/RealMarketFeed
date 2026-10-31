@@ -182,5 +182,16 @@
             "stock"
         ],
         "description": "This feed is responsible for generating the rss feed related to the topic Investing"
+    },
+    {
+        "name": "Bank of Canada",
+        "url": "https://www.bankofcanada.ca/content_type/press-releases/feed/",
+        "category": "macro",
+        "tags": [
+            "boc",
+            "rates",
+            "cad"
+        ],
+        "description": "Press releases and rate announcements from the Bank of Canada."
     }
 ]
