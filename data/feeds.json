@@ -259,5 +259,16 @@
             "cad"
         ],
         "description": "Press releases and rate announcements from the Bank of Canada."
+    },
+    {
+        "name": "BIS Central Bankers' Speeches",
+        "url": "https://www.bis.org/doclist/cbspeeches.rss",
+        "category": "macro",
+        "tags": [
+            "central-banks",
+            "rates",
+            "policy"
+        ],
+        "description": "Speeches by central bank officials worldwide, collected by the Bank for International Settlements."
     }
 ]
