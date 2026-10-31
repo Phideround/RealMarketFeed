@@ -1,14 +1,28 @@
 import type { MetadataRoute } from "next";
+import { getFeeds } from "@/lib/feeds";
+import { SITE_URL } from "@/lib/site";
+import { CATEGORIES } from "@/types/feed";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://realmarketfeed.com";
-
+  const now = new Date();
   return [
-    { url: baseUrl, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
-    { url: `${baseUrl}/feeds`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
-    { url: `${baseUrl}/submit`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
-    { url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
+    { url: SITE_URL, lastModified: now, changeFrequency: "daily", priority: 1 },
+    { url: `${SITE_URL}/feeds`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
+    ...CATEGORIES.map((c) => ({
+      url: `${SITE_URL}/category/${c.value}`,
+      lastModified: now,
+      changeFrequency: "daily" as const,
+      priority: 0.8,
+    })),
+    ...getFeeds().map((f) => ({
+      url: `${SITE_URL}/feeds/${f.slug}`,
+      lastModified: now,
+      changeFrequency: "daily" as const,
+      priority: 0.7,
+    })),
+    { url: `${SITE_URL}/submit`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
+    { url: `${SITE_URL}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
   ];
 }

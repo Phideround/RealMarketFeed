@@ -1,55 +1,104 @@
+import Link from "next/link";
+import { CATEGORIES } from "@/types/feed";
+import { REPO_URL, SISTER_SITES, utm } from "@/lib/site";
+
+const PICTURES = [
+  {
+    title: "Thomas Edison stock ticker",
+    by: "Jaclyn Nash, NMAH",
+    licence: "public domain",
+    page: "https://commons.wikimedia.org/wiki/File:Thomas_Edison_stock_ticker_NMAH-JN2014-3625.jpg",
+  },
+  {
+    title: "Customers' room, 25 Broad Street, 1902 (two views)",
+    by: "J.L. McLean & Co., Wall Street guide",
+    licence: "no known copyright restrictions",
+    page: "https://commons.wikimedia.org/wiki/File:Wall_Street_guide_-_(1902)_(14597816588).jpg",
+  },
+  {
+    title: "Western Daily Press printing press, 1908",
+    by: "Samuel Loxton",
+    licence: "public domain",
+    page: "https://commons.wikimedia.org/wiki/File:Western_Daily_Press_printing_press_1908.jpg",
+  },
+];
+
 export function Footer() {
   return (
-    <footer
-      className="border-t py-8 text-sm"
-      style={{ borderColor: "var(--card-border)", color: "var(--muted)" }}
-    >
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-4 sm:flex-row sm:justify-between">
-        <div className="flex flex-col items-center gap-2 sm:items-start">
-          <p>
-            &copy; {new Date().getFullYear()} RealMarketFeed. Open source on{" "}
-            <a
-              href="https://github.com/Phideround/RealMarketFeed"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline transition-colors hover:text-[var(--foreground)]"
-            >
-              GitHub
-            </a>
-            .
-          </p>
-          <div className="flex items-center gap-4">
-            <a
-              href="https://github.com/Phideround/RealMarketFeed/blob/main/CONTRIBUTING.md"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 underline transition-colors hover:text-[var(--foreground)]"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-              Contribute
-            </a>
-            <a
-              href="https://www.linkedin.com/in/pham-trung-phi-thanh/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 underline transition-colors hover:text-[var(--foreground)]"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-              @phithanh1230
-            </a>
+    <footer className="field overflow-hidden bg-field-3 px-[var(--margin)] pb-8 pt-16">
+      <p aria-hidden="true" className="display -ml-[0.04em] whitespace-nowrap text-[clamp(2.75rem,12.4vw,13rem)]">
+        RealMarketFeed
+      </p>
+
+      <div className="mt-16 grid gap-12 md:grid-cols-12">
+        <div className="md:col-span-6">
+          <h2 className="mb-4 text-[length:var(--step-small)] font-semibold">From the same family</h2>
+          <ul className="space-y-2">
+            {SISTER_SITES.map((s) => (
+              <li key={s.url}>
+                <a
+                  href={utm(s.url, "footer")}
+                  className="group block text-[clamp(1.5rem,1.1rem+1.4vw,2.25rem)] font-extrabold leading-tight tracking-[-0.035em] text-accent"
+                >
+                  <span className="group-hover:underline">{s.name}</span>
+                  <span className="block text-[length:var(--step-small)] font-normal tracking-normal text-[#111]">{s.blurb}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="grid grid-cols-2 gap-8 text-[length:var(--step-small)] md:col-span-6 md:grid-cols-3">
+          <div>
+            <h2 className="mb-3 font-semibold">Desks</h2>
+            <ul className="space-y-2">
+              {CATEGORIES.map((c) => (
+                <li key={c.value}>
+                  <Link href={`/category/${c.value}`} className="hover:underline">
+                    {c.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h2 className="mb-3 font-semibold">Site</h2>
+            <ul className="space-y-2">
+              <li><Link href="/feeds" className="hover:underline">Directory</Link></li>
+              <li><Link href="/submit" className="hover:underline">Contribute</Link></li>
+              <li><Link href="/about" className="hover:underline">About</Link></li>
+              <li><a href="/feed.xml" className="hover:underline">Headlines RSS</a></li>
+              <li><a href="/opml.xml" className="hover:underline">OPML export</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2 className="mb-3 font-semibold">Open source</h2>
+            <ul className="space-y-2">
+              <li><a href={REPO_URL} className="hover:underline">GitHub</a></li>
+              <li><a href={`${REPO_URL}/blob/main/CONTRIBUTING.md`} className="hover:underline">Contributing</a></li>
+              <li><a href="https://www.linkedin.com/in/pham-trung-phi-thanh/" className="hover:underline">Maintainer</a></li>
+            </ul>
           </div>
         </div>
+      </div>
+
+      <p className="mt-16 max-w-4xl text-[length:var(--step-small)]">
+        Pictures:{" "}
+        {PICTURES.map((p, i) => (
+          <span key={p.page}>
+            <a href={p.page} className="underline">{p.title}</a>, {p.by}, {p.licence}, via Wikimedia Commons
+            {i < PICTURES.length - 1 ? "; " : "."}
+          </span>
+        ))}{" "}
+        Headlines belong to their publishers and link to the original stories.
+      </p>
+
+      <div className="mt-6 flex flex-wrap justify-between gap-4 text-[length:var(--step-small)]">
         <p>
-          Powered by{" "}
-          <a
-            href="https://realmarketapi.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-medium text-[var(--foreground)] underline"
-          >
-            RealMarketAPI
-          </a>
+          &copy; {new Date().getFullYear()} RealMarketFeed. Free and MIT licensed. Powered by{" "}
+          <a href={utm("https://realmarketapi.com", "footer_powered_by")} className="underline">RealMarketAPI</a>.
         </p>
+        <a href="#main" className="underline">Back to top</a>
       </div>
     </footer>
   );

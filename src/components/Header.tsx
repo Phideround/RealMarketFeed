@@ -1,97 +1,91 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 import { useTheme } from "./ThemeProvider";
+
+const NAV = [
+  { href: "/feeds", label: "Directory" },
+  { href: "/category/crypto", label: "Desks" },
+  { href: "/submit", label: "Contribute" },
+  { href: "/about", label: "About" },
+];
 
 export function Header() {
   const { theme, toggle } = useTheme();
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+
+  const isActive = (href: string) =>
+    href === "/category/crypto" ? pathname.startsWith("/category") : pathname.startsWith(href);
 
   return (
-    <header className="sticky top-0 z-50 border-b backdrop-blur-md" style={{ borderColor: "var(--card-border)", backgroundColor: "var(--sticky-bg)" }}>
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <Link href="/" className="flex items-center gap-2 text-lg font-bold tracking-tight">
-          <span className="text-2xl">📡</span>
-          <span>RealMarketFeed</span>
+    <header className="relative z-50 text-[length:var(--step-small)] font-semibold">
+      <div className="flex items-stretch">
+        <Link
+          href="/"
+          className="flex items-center gap-2.5 bg-field-4 px-[var(--margin)] py-2 text-base font-extrabold tracking-[-0.03em] text-field-4-ink"
+          onClick={() => setOpen(false)}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.png" alt="" width={32} height={32} className="size-8 rounded-full bg-white" />
+          RealMarketFeed
         </Link>
 
-        <nav className="hidden items-center gap-6 text-sm font-medium sm:flex" style={{ color: "var(--muted)" }}>
-          <Link href="/feeds" className="flex items-center gap-1.5 transition-colors hover:text-[var(--foreground)]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
-            Feeds
-          </Link>
-          <Link href="/submit" className="flex items-center gap-1.5 transition-colors hover:text-[var(--foreground)]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
-            Submit
-          </Link>
-          <Link href="/about" className="flex items-center gap-1.5 transition-colors hover:text-[var(--foreground)]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-            About
-          </Link>
-          <a
-            href="https://github.com/Phideround/RealMarketFeed"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 transition-colors hover:text-[var(--foreground)]"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-            GitHub
-          </a>
+        <nav aria-label="Main" className="field hidden flex-1 items-center gap-6 bg-field-2 px-6 md:flex lg:max-w-[calc(var(--axis)+8rem)]">
+          {NAV.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              aria-current={isActive(item.href) ? "page" : undefined}
+              className="py-3 underline-offset-4 hover:underline aria-[current=page]:underline aria-[current=page]:decoration-2"
+            >
+              {item.label}
+            </Link>
+          ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="ml-auto flex items-center gap-1 pr-[var(--margin)] md:gap-4">
           <button
             onClick={toggle}
-            className="rounded-lg p-2 text-lg transition-colors hover:bg-[var(--badge-bg)]"
-            aria-label="Toggle theme"
+            className="press px-2 py-3 underline-offset-4 hover:underline"
+            aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
           >
-            {theme === "dark" ? "☀️" : "🌙"}
+            {theme === "dark" ? "Light" : "Dark"}
           </button>
-
-          {/* Mobile nav */}
-          <MobileNav />
+          <Link href="/submit" className="press hidden bg-accent px-4 py-2 text-accent-ink sm:inline-block">
+            Add a feed
+          </Link>
+          <button
+            className="px-2 py-3 md:hidden"
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            onClick={() => setOpen((o) => !o)}
+          >
+            {open ? "Close" : "Menu"}
+          </button>
         </div>
       </div>
-    </header>
-  );
-}
 
-function MobileNav() {
-  return (
-    <div className="sm:hidden">
-      <details className="relative">
-        <summary className="list-none cursor-pointer rounded-lg p-2 text-lg hover:bg-[var(--badge-bg)]">
-          ☰
-        </summary>
-        <nav
-          className="absolute right-0 top-full mt-2 flex w-48 flex-col gap-1 rounded-xl border p-2 shadow-lg"
-          style={{
-            backgroundColor: "var(--card-bg)",
-            borderColor: "var(--card-border)",
-          }}
-        >
-          <Link href="/feeds" className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm hover:bg-[var(--badge-bg)]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
-            Feeds
-          </Link>
-          <Link href="/submit" className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm hover:bg-[var(--badge-bg)]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
-            Submit
-          </Link>
-          <Link href="/about" className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm hover:bg-[var(--badge-bg)]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-            About
-          </Link>
-          <a
-            href="https://github.com/Phideround/RealMarketFeed"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm hover:bg-[var(--badge-bg)]"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-            GitHub
-          </a>
+      {open && (
+        <nav id="mobile-nav" aria-label="Main" className="field absolute inset-x-0 top-full bg-field-2 px-[var(--margin)] py-4 md:hidden">
+          <ul className="flex flex-col gap-1 text-2xl font-extrabold tracking-[-0.03em]">
+            {NAV.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className="block py-2" onClick={() => setOpen(false)}>
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <a href="/opml.xml" download className="block py-2">
+                Download OPML
+              </a>
+            </li>
+          </ul>
         </nav>
-      </details>
-    </div>
+      )}
+    </header>
   );
 }

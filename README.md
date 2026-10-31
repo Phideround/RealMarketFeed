@@ -2,9 +2,27 @@
 
 A curated, open-source directory of trading RSS feeds for crypto, forex, stocks, and macro markets.
 
-🔗 **Live site:** [RealMarketFeed](https://realmarketfeed.vercel.app/)
+🔗 **Live site:** [rss.realmarketapi.com](https://rss.realmarketapi.com)
 
 Built with Next.js, TypeScript, and TailwindCSS. Static-first, no database — deploy anywhere.
+
+What the site does with `data/feeds.json`:
+
+- a page per feed (`/feeds/<slug>`) with its latest headlines, the feed URL, and one-click Feedly / Inoreader links
+- a page per desk (`/category/crypto`, `forex`, `stocks`, `macro`)
+- `/opml.xml`: every feed as one OPML file to import into any reader (the directory can also export just the feeds you filtered)
+- `/feed.xml`: one RSS feed of the newest headlines across all sources
+
+Headlines are read from each feed at build time, so they are as fresh as the last deploy. A feed that can't be read at build time still gets its page, with a note instead of headlines.
+
+### Run it locally
+
+```bash
+npm install
+npm run dev
+```
+
+On Windows behind a corporate or antivirus TLS proxy, start it with `NODE_OPTIONS=--use-system-ca` so the build can read the feeds.
 
 ## Table of Contents
 
@@ -59,7 +77,7 @@ Built with Next.js, TypeScript, and TailwindCSS. Static-first, no database — d
 
 ## Contributing
 
-Want to add a feed? See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+Want to add a feed? The quickest way is to [open an issue](https://github.com/Phideround/RealMarketFeed/issues/new?title=Add%20feed%3A%20) with the feed URL. To add it yourself, edit [`data/feeds.json`](data/feeds.json) in GitHub's web editor; see [CONTRIBUTING.md](CONTRIBUTING.md) for the format and rules.
 
 ## License
 

@@ -1,48 +1,192 @@
 @import "tailwindcss";
 
+/* The theme toggle sets .dark on <html>; make Tailwind's dark: follow it, not the OS. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --color-primary: #2563eb;
-  --color-primary-dark: #1d4ed8;
-  --color-accent: #f59e0b;
+  --font-sans: var(--font-schibsted), system-ui, sans-serif;
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-field-1: var(--field-1);
+  --color-field-2: var(--field-2);
+  --color-field-3: var(--field-3);
+  --color-field-4: var(--field-4);
+  --color-field-4-ink: var(--field-4-ink);
+  --color-field-5: var(--field-5);
 }
 
-/* Light mode */
 :root {
-  --background: #f9fafb;
-  --foreground: #111827;
-  --card-bg: #ffffff;
-  --card-border: #e5e7eb;
-  --muted: #6b7280;
-  --badge-bg: #f3f4f6;
-  --badge-text: #374151;
-  --input-bg: #ffffff;
-  --input-border: #d1d5db;
-  --sticky-bg: rgba(249, 250, 251, 0.85);
+  --bg: #f4f4f1;
+  --surface: #e8e8e3;
+  --ink: #111111;
+  --muted: #45453f;
+  --accent: #4f46e5;
+  --accent-ink: #ffffff;
+  --field-1: #ff8126;
+  --field-2: #4db3ff;
+  --field-3: #c5f53d;
+  --field-4: #161615;
+  --field-4-ink: #f2f2f2;
+  --field-5: #ffcf3f;
+  /* Text on the coloured fields is always black, in both themes. */
+  --field-ink: #111111;
+
+  --step-small: clamp(0.9375rem, 0.9rem + 0.1vw, 1rem);
+  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --step-head: clamp(2.25rem, 1.3rem + 3.6vw, 4.25rem);
+  --step-display: clamp(3.25rem, 0.5rem + 7.2vw, 8rem);
+
+  --margin: clamp(1rem, 0.6rem + 1.6vw, 2rem);
+  --axis: 42%;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  color-scheme: light;
 }
 
-/* Dark mode */
 .dark {
-  --background: #0f172a;
-  --foreground: #f1f5f9;
-  --card-bg: #1e293b;
-  --card-border: #334155;
-  --muted: #94a3b8;
-  --badge-bg: #334155;
-  --badge-text: #cbd5e1;
-  --input-bg: #1e293b;
-  --input-border: #475569;
-  --sticky-bg: rgba(15, 23, 42, 0.85);
+  --bg: #121211;
+  --surface: #1e1e1c;
+  --ink: #f2f2ee;
+  --muted: #bdbdb5;
+  --field-4: #000000;
+  color-scheme: dark;
+}
+
+html {
+  background: var(--bg);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
-  transition: background-color 0.2s, color 0.2s;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--step-body);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  font-feature-settings: "tnum" 0;
 }
 
-a, button, select, summary, [role="button"] {
+a,
+button,
+select,
+summary,
+[role="button"] {
   cursor: pointer;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--field-3);
+  color: #111;
+}
+
+.display {
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+}
+
+.head {
+  font-size: var(--step-head);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+}
+
+.field {
+  color: var(--field-ink);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Masked headline: each line rises from behind its own baseline. */
+.mask-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+.mask-line > span {
+  display: block;
+  animation: rise 900ms var(--ease-out) both;
+}
+.mask-line:nth-child(2) > span {
+  animation-delay: 110ms;
+}
+.after-headline {
+  animation: fade-up 700ms var(--ease-out) 450ms both;
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(105%);
+  }
+}
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+/* Section entrances, scroll-driven where supported; elsewhere everything is simply shown. */
+@supports (animation-timeline: view()) {
+  .enter > * {
+    animation: fade-up linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
+}
+
+/* Slow drift on the masthead photographs. */
+.drift {
+  animation: drift 24s ease-in-out infinite alternate;
+}
+@keyframes drift {
+  from {
+    transform: scale(1.02) translate(0, 0);
+  }
+  to {
+    transform: scale(1.1) translate(-2%, -1.5%);
+  }
+}
+
+.press {
+  transition:
+    transform 160ms var(--ease-out),
+    background-color 160ms,
+    color 160ms;
+}
+.press:hover {
+  transform: translateY(-2px);
+}
+.press:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.row-link {
+  transition:
+    background-color 160ms,
+    padding-left 220ms var(--ease-out);
+}
+.row-link:hover {
+  background-color: color-mix(in srgb, currentColor 8%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }
