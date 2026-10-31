@@ -182,5 +182,16 @@
             "stock"
         ],
         "description": "This feed is responsible for generating the rss feed related to the topic Investing"
+    },
+    {
+        "name": "Bank of Japan",
+        "url": "https://www.boj.or.jp/en/rss/whatsnew.xml",
+        "category": "macro",
+        "tags": [
+            "boj",
+            "rates",
+            "jpy"
+        ],
+        "description": "Policy statements, reports and releases from the Bank of Japan."
     }
 ]
